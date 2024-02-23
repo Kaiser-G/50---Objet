@@ -11,6 +11,55 @@
 
     <h1>20 Objet_class_V1.html</h1>
 
+
+
+
+    <script>
+        class Stagiaire {
+
+            //Les attributs public
+            Nom = "NC";
+            Prenom = "NC";
+            Age = "NC";
+            Adresse = "NC";
+
+            constructor(nom = "NC", prenom = "NC", age = "NC", adresse = "NC") {
+                this.Nom = nom;
+                this.Prenom = prenom;
+                this.Age = age;
+                this.Adresse = adresse;
+            }
+
+
+            //methode
+            Afficher = function () {
+
+                return ("Nom : " + this.Nom + " Prénom " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
+            };
+
+
+        }
+    </script>
+    <script>
+        "use strict";
+
+
+
+
+        window.addEventListener('load', (event) => {
+            let john = new Stagiaire("Doe", "John", 20, "Rue de la république");
+            let paul = new Stagiaire("Durand", "paul", 30, "Rue du test");
+
+            console.log(john);
+            console.log(paul);
+            console.log(john.Afficher);
+            alert(john.Afficher());
+            alert(paul.Afficher());
+
+
+        });
+    </script>
+
 </body>
 
 </html>

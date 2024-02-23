@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 5</title>
+</head>
+
+<body>
+
+    <!-- NE FONCTIONNE PAS !!!!! -->
+
+    <h1>Exercice 5 (30 Objet_class_saisie_formulaire_V2.html)</h1>
+
+
+    <form action="" method="post">
+        <label for="nom">Nom : </label>
+        <input id="nom" type="text" name="nom" placeholder="saisir un nom"> <br>
+
+        <label for="prenom">Prénom :</label>
+        <input id="prenom" type="text" name="prenom" placeholder="saisir un prénom"> <br>
+
+        <label for="age">Age :</label>
+        <input id="age" type="text" name="age" placeholder="saisir un age"> <br>
+
+        <label for="adresse">Adresse :</label>
+        <input id="adresse" type="text" name="adresse" placeholder="saisir une adresse"> <br>
+
+        <button id="btn" type="submit">Ajouter</button>
+    </form>
+    <br>
+    <br>
+    <br>
+
+    <h1>Liste des stagiaires</h1>
+    <br>
+
+    <div id="liste"></div>
+
+
+    <!-- Début des scripts Javascript -->
+    <script>
+        class Stagiaire {
+
+            //Les attributs privé
+            #nom = "NC";
+            #prenom = "NC";
+            #age = "NC";
+            #adresse = "NC";
+
+            constructor(nom = "NC", prenom = "NC", age = "NC", adresse = "NC") {
+                this.Nom = nom;
+                this.Prenom = prenom;
+                this.Age = age;
+                this.Adresse = adresse;
+            }
+
+            // Getter et Setter : Les ACCESSEURS
+            get Nom() {
+                return this.#nom;
+            }
+            set Nom(value) {
+                if (value.length < 4) {
+                    alert("Erreur le nom est trop court");
+                    throw new Error("Erreur le nom est trop court");
+
+                }
+                this.#nom = value;
+            }
+
+            get Prenom() {
+                return this.#prenom;
+            }
+            set Prenom(value) {
+                // alert(value);
+                if (value.length < 4) {
+                    alert("Erreur le prénom est trop court");
+                    throw new Error("Erreur le prénom est trop court");
+                }
+                this.#prenom = value;
+            }
+
+            get Age() {
+                return this.#age;
+            }
+            set Age(value) {
+                // alert(value);
+                if ((value <= 0) && (value >= 150)) {
+                    alert("Erreur l'age est inférieur à 0 ou supérieur à 150");
+                    throw new Error("Erreur l'age est inférieur à 0 ou supérieur à 150");
+                }
+                this.#age = value;
+            }
+
+            get Adresse() {
+                return this.#adresse;
+            }
+            set Adresse(value) {
+                this.#adresse = value;
+            }
+
+
+            //methode
+            Afficher = function () {
+                return ("Nom : " + this.Nom + " Prénom " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
+            };
+
+
+        }
+    </script>
+    <script>
+        "use strict";
+        alert("Créer votre profil");
+
+        window.addEventListener('load', (event) => {
+
+            let btn = document.getElementById("btn");
+
+            btn.addEventListener("click",
+                (e) => {
+                    let nom = document.getElementById("nom").value;
+                    let prenom = document.getElementById("prenom").value;
+                    let age = document.getElementById("age").value;
+                    let adresse = document.getElementById("adresse").value;
+
+                    let registre = [];
+
+                    let stagiaire = new Stagiaire(nom, prenom, age, adresse);
+
+
+                    console.log(stagiaire);
+                    stagiaire.Afficher();
+
+                    //création du tableau
+                    function affiche(tablStagiaire) {
+                        let zoneAffiche = document.getElementById("liste");
+
+                        let resultat = "<table border= '2px'><tr><th>Nom</th><th>Prenom</th><th>Age</th><th>Adresse</th></tr>";
+
+                        tablStagiaire.forEach(stagiaire => {
+                            resultat += "<tr>";
+                            resultat += "<td>" + stagiaire.nom + "</td><td>" + stagiaire.prenom + "</td><td>" + stagiaire.age + "</td><td>" + stagiaire.adresse + "</td>";
+                            resultat += "</tr>";
+                        });
+
+                        resultat += "</table>";
+                        zoneAffiche.innerHTML = resultat;
+
+
+
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    registre.push(stagiaire);
+                    e.preventDefault();
+                    alert("Nouveau profil de stagiaire créé");
+
+                }, false);
+
+        });
+    </script>
+
+</body>
+
+</html>

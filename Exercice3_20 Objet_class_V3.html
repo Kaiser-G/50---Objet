@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 3</title>
+</head>
+
+<body>
+
+    <h1>Exercice 3 (20 Objet_class_V3.html)</h1>
+
+
+
+
+    <script>
+        class Stagiaire {
+
+            //Les attributs privé
+            #nom = "NC";
+            #prenom = "NC";
+            #age = "NC";
+            #adresse = "NC";
+
+            constructor(nom = "NC", prenom = "NC", age = "NC", adresse = "NC") {
+                this.Nom = nom;
+                this.Prenom = prenom;
+                this.Age = age;
+                this.Adresse = adresse;
+            }
+
+            // Getter et Setter : Les ACCESSEURS
+            get Nom() {
+                return this.#nom;
+            }
+            set Nom(value) {
+                this.#nom = value;
+            }
+
+            get Prenom() {
+                return this.#prenom;
+            }
+            set Prenom(value) {
+                this.#prenom = value;
+            }
+
+            get Age() {
+                return this.#age;
+            }
+            set Age(value) {
+                this.#age = value;
+            }
+
+            get Adresse() {
+                return this.#adresse;
+            }
+            set Adresse(value) {
+                this.#adresse = value;
+            }
+
+
+            // get Solde() {
+            //     return this.#solde;
+            // }
+            // set Solde(value) {
+            //   if (value < 0) {
+            //     throw new Error("La banque n'accepte pas un solde NEGATIF");
+            //   }
+            //   this.#solde = value;
+            // }
+
+
+
+
+
+            //methode
+            Afficher = function () {
+
+                return ("Nom : " + this.Nom + " Prénom " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
+            };
+
+
+        }
+    </script>
+    <script>
+        "use strict";
+
+
+
+
+        window.addEventListener('load', (event) => {
+            let stagiaire_1 = new Stagiaire("Doe", "John", 20, "Rue de la république");
+            let stagiaire_2 = new Stagiaire("Durand", "Paul", 30, "Rue du test");
+
+
+            alert(stagiaire_1.Afficher());
+            alert(stagiaire_2.Afficher());
+
+
+        });
+    </script>
+
+</body>
+
+</html>

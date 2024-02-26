@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice 6</title>
+</head>
+
+<body>
+
+    <h1>Exercice 6 (40 Livre_class_saisie_formulaire.html)</h1>
+
+
+    <form action="" method="post">
+        <label for="code">Code ISBN :</label>
+        <input id="code" type="number" name="code"> <br>
+        <label for="titre">Titre :</label>
+        <input id="titre" type="text" name="titre"> <br>
+        <label for="auteur">Auteur :</label>
+        <input id="auteur" type="text" name="auteur"> <br>
+        <label for="nbPage">Nombre de pages :</label>
+        <input id="nbpages" type="text" name="NbPages"> <br>
+        <label for="theme">Thème :</label>
+        <input id="theme" type="text" name="theme"> <br>
+        <br>
+        <button id="btn">Ajouter</button>
+    </form>
+
+
+    <h3>Tableau des livres</h3>
+    <div id="liste"></div>
+
+
+
+
+
+
+
+    <script src="Livre.js"></script>
+    <script>
+        "use strict";
+        // alert("Créer");
+        // Les Fonctions/Procédures
+
+
+        // Zone de déclaration des variables GLOBALES 
+        // (celles du programme PRINCIPAL)
+
+        // Se déclenche lorsque TOUTE LA PAGE est chargée (Style, images etc..)
+
+        window.addEventListener('load', (event) => {
+            //Interception du click sur le bouton Ajouter
+            let btn = document.getElementById("btn");
+
+            btn.addEventListener("click", (e) => {
+                alert("CLICK");
+                e.preventDefault();
+            }, false);
+
+        });
+    </script>
+
+</body>
+
+</html>

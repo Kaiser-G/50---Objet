@@ -9,10 +9,9 @@
 
 <body>
 
-    <!-- NE FONCTIONNE PAS !!!!! -->
+    <!-- Exo réalisé grace a la correction -->
 
     <h1>Exercice 5 (30 Objet_class_saisie_formulaire_V2.html)</h1>
-
 
     <form action="" method="post">
         <label for="nom">Nom : </label>
@@ -27,13 +26,13 @@
         <label for="adresse">Adresse :</label>
         <input id="adresse" type="text" name="adresse" placeholder="saisir une adresse"> <br>
 
-        <button id="btn" type="submit">Ajouter</button>
+        <button id="btn">Ajouter</button>
     </form>
     <br>
     <br>
     <br>
 
-    <h1>Liste des stagiaires</h1>
+    <h1>Tableau des stagiaires</h1>
     <br>
 
     <div id="liste"></div>
@@ -64,7 +63,6 @@
                 if (value.length <= 4) {
                     alert("Erreur le nom est trop court");
                     throw new Error("Erreur le nom est trop court");
-
                 }
                 this.#nom = value;
             }
@@ -103,7 +101,7 @@
 
             //methode
             Afficher = function () {
-                return ("Nom : " + this.Nom + " Prénom " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
+                return ("Nom : " + this.Nom + " Prénom : " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
             };
         }
 
@@ -123,9 +121,9 @@
             } else {
                 let resultat = "<table border= '2px'><tr><th>Nom</th><th>Prenom</th><th>Age</th><th>Adresse</th></tr>";
 
-                tablStagiaire.forEach(stagiaire => {
+                tablStagiaire.forEach(unStagiaire => {
                     resultat += "<tr>";
-                    resultat += "<td>" + stagiaire.nom + "</td><td>" + stagiaire.prenom + "</td><td>" + stagiaire.age + "</td><td>" + stagiaire.adresse + "</td>";
+                    resultat += "<td>" + unStagiaire.Nom + "</td><td>" + unStagiaire.Prenom + "</td><td>" + unStagiaire.Age + "</td><td>" + unStagiaire.Adresse + "</td>";
                     resultat += "</tr>";
 
                 });
@@ -153,8 +151,10 @@
                     listeStagiaire.push(stagiaire_saisi);
                     console.log(listeStagiaire);
                     afficherListeStagiaire(listeStagiaire);
+                    e.preventDefault();
                 } catch (err) {
                     alert("Erreur : " + err.message);
+                    e.preventDefault();
                 }
             }, false);
         });

@@ -1,4 +1,4 @@
-class livre {
+class Livre {
   #code = "NC";
   #titre = "NC";
   #auteur = "NC";
@@ -38,11 +38,12 @@ class livre {
     return this.#nbPages;
   }
   set Page(value) {
-    if (value > 0) {
+    if (value >= 0) {
       this.#nbPages = value;
+    } else {
+      alert("Le nombres de pages doit être supérieur à 0");
+      throw new Error("Erreur le nombre de page est trop court");
     }
-    alert("Le nombres de pages doit être supérieur à 0");
-    throw new Error("Erreur le nombre de page est trop court");
   }
 
   get Theme() {
@@ -50,15 +51,16 @@ class livre {
   }
   set Theme(value) {
     if (
-      (value = "Policier") ||
-      (value = "Bd") ||
-      (value = "SF") ||
-      (value = "Autre")
+      value == "Policier" ||
+      value == "Bd" ||
+      value == "SF" ||
+      value == "Autre"
     ) {
       this.#theme = value;
+    } else {
+      alert("Le thème est inconnu");
+      throw new Error("Erreur le thème n'est pas reconnu");
     }
-    alert("Le thème est inconnu");
-    throw new Error("Erreur le thème n'est pas reconnu");
   }
 
   constructor(
@@ -79,13 +81,13 @@ class livre {
     return (
       "Code ISBN : " +
       this.Code +
-      "Titre : " +
+      " Titre : " +
       this.Titre +
-      "Auteur : " +
+      " Auteur : " +
       this.Auteur +
-      "Nombre de pages : " +
+      " Nombre de pages : " +
       this.Page +
-      "Le thème : " +
+      " Le thème : " +
       this.Theme
     );
   };
@@ -93,11 +95,11 @@ class livre {
 
 //fonction qui récupère la saisi
 function recup_saisi() {
-  let resultat = new livre(
+  let resultat = new Livre(
     document.getElementById("code").value,
     document.getElementById("titre").value,
     document.getElementById("auteur").value,
-    document.getElementById("Nbp").value,
+    document.getElementById("nbpages").value,
     document.getElementById("theme").value
   );
   alert("Récap de saisi : " + resultat.Afficher());
@@ -107,10 +109,30 @@ function recup_saisi() {
 //création du tableau
 function afficherListeLivre(tabLivre) {
   let zoneAffiche = document.getElementById("liste");
-  if (tabLivre.length === 0) {
+  if (tabLivre.length == 0) {
     alert("la ligne est vide");
   } else {
     let tableau =
       "<table border = '2px'><tr><th>Code ISBN</th><th>Titre</th><th>Auteur</th><th>Nb de pages</th><th>Thème</th></tr>";
+
+    tabLivre.forEach((unLivre) => {
+      tableau += "<tr>";
+      tableau +=
+        "<td>" +
+        unLivre.Code +
+        "</td><td>" +
+        unLivre.Titre +
+        "</td><td>" +
+        unLivre.Auteur +
+        "</td><td>" +
+        unLivre.Page +
+        "</td><td>" +
+        unLivre.Theme +
+        "</td>";
+      tableau += "</tr>";
+    });
+    tableau += "</table>";
+    zoneAffiche.innerHTML = tableau;
   }
 }
+let listeLivre = [];

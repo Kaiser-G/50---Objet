@@ -61,7 +61,7 @@
                 return this.#nom;
             }
             set Nom(value) {
-                if (value.length < 4) {
+                if (value.length <= 4) {
                     alert("Erreur le nom est trop court");
                     throw new Error("Erreur le nom est trop court");
 
@@ -74,7 +74,7 @@
             }
             set Prenom(value) {
                 // alert(value);
-                if (value.length < 4) {
+                if (value.length <= 2) {
                     alert("Erreur le prénom est trop court");
                     throw new Error("Erreur le prénom est trop court");
                 }
@@ -105,72 +105,58 @@
             Afficher = function () {
                 return ("Nom : " + this.Nom + " Prénom " + this.Prenom + " Age : " + this.Age + " ans " + " Adresse : " + this.Adresse);
             };
-
-
         }
+
+        //fonction en dehors de la classe
+        //permet de créer un nouveau stagiaire
+        function recuperer_saisie() {
+            let resultat = new Stagiaire(document.getElementById("nom").value, document.getElementById("prenom").value, document.getElementById("age").value, document.getElementById("adresse").value);
+            alert("Stagiaire saisi : " + resultat.Afficher());
+            return resultat;
+        }
+
+        //création du tableau
+        function afficherListeStagiaire(tablStagiaire) {
+            let zoneAffiche = document.getElementById("liste");
+            if (tablStagiaire.length == 0) {
+                zoneAffiche.html = "La liste des stagiaires est vide";
+            } else {
+                let resultat = "<table border= '2px'><tr><th>Nom</th><th>Prenom</th><th>Age</th><th>Adresse</th></tr>";
+
+                tablStagiaire.forEach(stagiaire => {
+                    resultat += "<tr>";
+                    resultat += "<td>" + stagiaire.nom + "</td><td>" + stagiaire.prenom + "</td><td>" + stagiaire.age + "</td><td>" + stagiaire.adresse + "</td>";
+                    resultat += "</tr>";
+
+                });
+
+                resultat += "</table>";
+                zoneAffiche.innerHTML = resultat;
+            }
+        }
+
+        let listeStagiaire = [];
+
     </script>
     <script>
         "use strict";
         alert("Créer votre profil");
 
         window.addEventListener('load', (event) => {
-
+            //Interception du click sur le bouton Ajouter
             let btn = document.getElementById("btn");
 
-            btn.addEventListener("click",
-                (e) => {
-                    let nom = document.getElementById("nom").value;
-                    let prenom = document.getElementById("prenom").value;
-                    let age = document.getElementById("age").value;
-                    let adresse = document.getElementById("adresse").value;
-
-                    let registre = [];
-
-                    let stagiaire = new Stagiaire(nom, prenom, age, adresse);
-
-
-                    console.log(stagiaire);
-                    stagiaire.Afficher();
-
-                    //création du tableau
-                    function affiche(tablStagiaire) {
-                        let zoneAffiche = document.getElementById("liste");
-
-                        let resultat = "<table border= '2px'><tr><th>Nom</th><th>Prenom</th><th>Age</th><th>Adresse</th></tr>";
-
-                        tablStagiaire.forEach(stagiaire => {
-                            resultat += "<tr>";
-                            resultat += "<td>" + stagiaire.nom + "</td><td>" + stagiaire.prenom + "</td><td>" + stagiaire.age + "</td><td>" + stagiaire.adresse + "</td>";
-                            resultat += "</tr>";
-                        });
-
-                        resultat += "</table>";
-                        zoneAffiche.innerHTML = resultat;
-
-
-
-
-                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    registre.push(stagiaire);
-                    e.preventDefault();
-                    alert("Nouveau profil de stagiaire créé");
-
-                }, false);
-
+            btn.addEventListener("click", (e) => {
+                try {
+                    alert("Click");
+                    let stagiaire_saisi = recuperer_saisie();
+                    listeStagiaire.push(stagiaire_saisi);
+                    console.log(listeStagiaire);
+                    afficherListeStagiaire(listeStagiaire);
+                } catch (err) {
+                    alert("Erreur : " + err.message);
+                }
+            }, false);
         });
     </script>
 
